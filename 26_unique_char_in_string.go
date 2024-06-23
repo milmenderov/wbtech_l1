@@ -1,13 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 func checkChars(str string) bool {
 	char := make(map[rune]bool, 0)
+	str = strings.ToLower(str)
 	for _, item := range str {
-		if item == ' ' {
-			continue
-		}
+		//if item == ' ' {
+		//	continue
+		//}
 		_, ok := char[item]
 		if ok {
 			return false
@@ -20,9 +24,9 @@ func checkChars(str string) bool {
 func main() {
 	s := "abcd"
 	fmt.Println("string:", s, checkChars(s))
-	s = "abcda"
+	s = "abcdA"
 	fmt.Println("string:", s, checkChars(s))
-	s = "abcd gf"
+	s = "abcdgf "
 	fmt.Println("string:", s, checkChars(s))
 
 }

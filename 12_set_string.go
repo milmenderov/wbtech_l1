@@ -3,22 +3,21 @@ package main
 import "fmt"
 
 func setString(arr []string) []string {
-	res := make([]string, 0)
-	setOfString := make(map[string]bool, len(arr))
+	result := make([]string, 0)
+	set := make(map[string]bool, len(arr))
 
 	for _, val := range arr {
-		setOfString[val] = true
+		set[val] = true
 	}
 
-	for key := range setOfString {
-		res = append(res, key)
+	for key := range set {
+		result = append(result, key)
 	}
 
-	return res
+	return result
 }
 
 func main() {
 	arr := []string{"cat", "cat", "dog", "cat", "tree"}
-
 	fmt.Printf("Arr: %v\nSet: %v\n", arr, setString(arr))
 }
