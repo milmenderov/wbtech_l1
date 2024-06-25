@@ -5,32 +5,25 @@ import (
 	"sync"
 )
 
-// Вычисление квадрата числа и отправки в канал
-func square(num int, wg *sync.WaitGroup, resultChan chan int) {
-	defer wg.Done()
+// Вычисление квадрата числа
+func square(num int, wg *sync.WaitGroup) {
 	result := num * num
-	resultChan <- result
+	fmt.Println(result)
+	defer wg.Done()
+
 }
 
 func main() {
 
 	numbers := []int{2, 4, 6, 8, 10}
-	resultChan := make(chan int, len(numbers))
 
 	var wg sync.WaitGroup
 
 	for _, num := range numbers {
 		wg.Add(1)
-		go square(num, &wg, resultChan)
+		go square(num, &wg)
 	}
 
 	// Ожидание завершения горутин
 	wg.Wait()
-
-	// Закрытие канала
-	close(resultChan)
-
-	for result := range resultChan {
-		fmt.Println(result)
-	}
 }

@@ -45,7 +45,3 @@ func main() {
 	// Выполняем действие, используя метод Perform от Action
 	act.Perform()
 }
-
-func sum(a, b int) int {
-	return a + b
-}

@@ -9,9 +9,6 @@ func checkChars(str string) bool {
 	char := make(map[rune]bool, 0)
 	str = strings.ToLower(str)
 	for _, item := range str {
-		//if item == ' ' {
-		//	continue
-		//}
 		_, ok := char[item]
 		if ok {
 			return false
@@ -26,7 +23,7 @@ func main() {
 	fmt.Println("string:", s, checkChars(s))
 	s = "abcdA"
 	fmt.Println("string:", s, checkChars(s))
-	s = "abcdgf "
+	s = "abcdgf! "
 	fmt.Println("string:", s, checkChars(s))
 
 }

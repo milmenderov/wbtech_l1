@@ -7,9 +7,9 @@ import (
 
 // Вычисление квадрата числа и отправка в канал
 func Square(num int, wg *sync.WaitGroup, resultChan chan int) {
-	defer wg.Done()
 	result := num * num
 	resultChan <- result
+	defer wg.Done()
 }
 
 func main() {

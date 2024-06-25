@@ -5,20 +5,20 @@ import (
 	"sync"
 )
 
-func squaree(in <-chan int, out chan<- int, wg *sync.WaitGroup) {
-	defer wg.Done()
+func double(in <-chan int, out chan<- int, wg *sync.WaitGroup) {
 	for num := range in {
-		sq := num * num
+		sq := num * 2
 		out <- sq
 	}
 	close(out)
+	defer wg.Done()
 }
 
-func stdExit(out <-chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
+func stdOutput(out <-chan int, wg *sync.WaitGroup) {
 	for val := range out {
 		fmt.Println(val)
 	}
+	defer wg.Done()
 }
 
 func main() {
@@ -29,8 +29,8 @@ func main() {
 	var wg sync.WaitGroup
 
 	wg.Add(2)
-	go squaree(in, out, &wg)
-	go stdExit(out, &wg)
+	go double(in, out, &wg)
+	go stdOutput(out, &wg)
 
 	for _, val := range numbers {
 		in <- val

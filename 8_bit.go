@@ -27,7 +27,6 @@ func SetBit(b int64, index int, bit int) int64 {
 
 func SetBitAuto(b int64, index int) int64 {
 	var sdvig int64 = 1 << index
-	//fmt.Println(sdvig)
 	return b ^ (sdvig)
 }
 
